@@ -16,8 +16,11 @@ const client = new Client({
   try {
     await client.connect();
 
-     await IXSizes(client, 'tabluno');
-     // await queryPref(client);
+     // hash index is smaller than btree by 8% 
+     // await IXSizes(client, 'tabluno');
+     // await IXSizes(client, 'tabluno2');
+    
+     await queryPref(client);
 
   } catch(err) {
     console.log('we got this error: \n', err);
