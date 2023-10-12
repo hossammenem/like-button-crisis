@@ -16,13 +16,13 @@ async function queryPref(client) {
     console.log('\n' + query.queryStr);
     console.log('-----------------------------------------');
     let avg = 0;
-    for(let i = 0; i < maxIters+1; i++)    {
+    for(let i = 1; i <= maxIters; i++)    {
       const start = performance.now();
       await client.query(query.queryStr, query.options)
       const end = performance.now();
       avg += end - start;
 
-      if (i > 0 && (i % progressInterval == 0 || i == maxIters)) {
+      if (i > 0 && i % progressInterval == 0) {
         const progress = (i / maxIters) * 100;
         avg /= i;
         console.log(`${progress}%: ${avg.toFixed(3)}ms`);
