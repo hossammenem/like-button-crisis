@@ -3,7 +3,7 @@ const { Client } = require('pg');
 const args = process.argv.slice(2);
 
 const rows = +args[args.indexOf('-c')+1];
-const table = args.indexOf('-t') != -1 ? args[args.indexOf('-t')+1] : 'tabluno';
+const table = args.indexOf('-t') != -1 ? args[args.indexOf('-t')+1] : 'liked_posts';
 
 const client = new Client({
   user: 'postgres',
@@ -16,21 +16,7 @@ const client = new Client({
 (async ()=> {
 await client.connect();
 
-await client.query(`
-INSERT INTO ${table}(user_name, user_fav_food, user_bd)
-SELECT 
-  md5(random()::text || clock_timestamp()::text)::varchar,
-
-  CASE
-    WHEN random() < 0.3 THEN 'KAtsudon'
-    WHEN random() < 0.6 THEN 'meatBALLLZZ'
-    ELSE 'PASTA BITCH'
-  END,
-
-  '1980-01-01'::date + (random() * ('1999-04-18'::date - '1980-01-01'::date))::integer
-
-FROM generate_series(1,$1);
-`, [rows]);
+await client.query(`INSERT INTO ${table} SELECT uuid_generate_v4(), uuid_generate_v4(), CURRENT_DATE FROM generate_series(1,$1);`, [rows]);
 
 client.end();
 })();
