@@ -1,0 +1,11 @@
+liked_posts -> 3256 MB
+total IXs size of table liked_posts is 1352 MB
+
+ -------------------------------------------- 
+
+CREATE INDEX ix_liked_posts_hash ON public.liked_posts USING hash (user_id) || ix_liked_posts_hash -> 1352 MB
+CREATE INDEX ix_liked_posts_hash ON public.liked_posts USING hash (user_id) || ix_liked_posts_hash -> 42%
+total:  42%
+
+ -------------------------------------------- 
+

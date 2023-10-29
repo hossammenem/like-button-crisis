@@ -44,5 +44,3 @@ const getPercentage = (nume, denom)=> (parseInt(nume) / parseInt(denom)).toFixed
 const divider = ()=> console.log('\n','--------------------------------------------', '\n');
 
 module.exports = IXSizes;
-
-

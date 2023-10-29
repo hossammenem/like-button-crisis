@@ -16,9 +16,7 @@ const client = new Client({
   try {
     await client.connect();
 
-     // hash index is smaller than btree by 8% 
-     await IXSizes(client, 'tabluno');
-     await IXSizes(client, 'tabluno2');
+     await IXSizes(client, 'liked_posts');
     
      // await queryPref(client);
 

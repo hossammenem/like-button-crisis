@@ -19,4 +19,6 @@ await client.connect();
 await client.query(`INSERT INTO ${table} SELECT uuid_generate_v4(), uuid_generate_v4(), CURRENT_DATE FROM generate_series(1,$1);`, [rows]);
 
 client.end();
+
+console.log('DONE!');
 })();
